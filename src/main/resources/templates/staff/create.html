@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{layout/template::areas(~{::title},~{::main})}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout/template::areas(~{::title},~{::main})}">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Create New Project</title>
+    <title>Create New Staff</title>
+
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -12,59 +14,72 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-</head>
-<body>
+    <style>
+        small.text-danger {
+            display: none;
+        }
+    </style>
 
+
+
+</head>
+
+<body>
 <main class="main">
     <link rel="stylesheet" th:href="@{/css/staff/create.css}">
 
     <div class="container">
         <h1>Create New Staff</h1>
-        <form th:action="@{/admin/staff/create}" th:method="POST" class="table-wrapper" th:object="${staffDTO}">
+        <form th:action="@{/admin/staff/create}" th:object="${staffDTO}" th:method="post" id="create-staff-form"
+              class="table-wrapper">
             <div class="staff-account">
                 <div>
-                    <input class="form-control" type="text" placeholder="Staff Name" name="name">
+                    <input class="form-control" th:field="*{name}" id="name" type="text" placeholder="Staff Name" required>
+                    <small class="text-danger" th:if="${nameExists}" id="name-error">Tên đã tồn tại</small>
                 </div>
 
                 <div>
-                    <input class="form-control" type="email" placeholder="Email" name="email">
+                    <input class="form-control" th:field="*{email}" id="email" type="email" placeholder="Email" required>
+                    <small class="text-danger" th:if="${emailExists}" id="email-error">Email đã tồn tại</small>
                 </div>
 
                 <div>
-                    <input class="form-control" type="password" placeholder="Password" name="password">
+                    <input class="form-control" th:field="*{password}" id="password" type="password" required
+                           placeholder="Password">
                 </div>
 
                 <div>
-                    <input class="form-control" type="password" placeholder="Confirm Password" name="rePassword">
+                    <input class="form-control" th:field="*{rePassword}" id="rePassword" type="password" required
+                           placeholder="Confirm Password">
+
                 </div>
+
             </div>
 
             <div class="row">
                 <div>
                     <label>Department</label>
-                    <input class="form-control" type="text" name="department">
+                    <input class="form-control" th:field="*{department}" type="text">
                 </div>
 
                 <div>
                     <label>Job Rank</label>
-                    <input class="form-control" type="text" name="rank">
+                    <input class="form-control" th:field="*{rank}" type="text">
                 </div>
 
                 <div>
                     <label>Salary</label>
-                    <input class="form-control" type="text" name="salary">
+                    <input class="form-control" th:field="*{salary}" type="text">
                 </div>
             </div>
 
-            <div class="action-button">
-                <input class="btn btn-success" type="submit">
-                <input type="reset" class="btn btn-info">
+            <div class="action-button" style="margin-top: 20px;">
+                <input class="btn btn-success" type="submit" value="Submit">
+                <input class="btn btn-info" type="reset" value="Reset">
             </div>
         </form>
     </div>
-
-</main>
+    </main>
 
 </body>
-
 </html>

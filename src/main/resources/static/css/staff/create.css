@@ -1,35 +1,44 @@
+/* Giao diện cơ bản */
 body {
     color: #404E67;
     background: #F5F7FA;
     font-family: 'Open Sans', sans-serif;
 }
+
 h1 {
     text-align: center;
     margin: 0px;
 }
+
 .staff-account {
     margin-bottom: 50px;
 }
+
 .staff-account div input {
     width: 50%;
-    margin: 20px auto 40px;
+    margin: 20px auto 5px;
 }
+
 label {
     display: block;
     text-align: center;
 }
+
 .row {
     justify-content: space-between;
     margin-bottom: 20px;
 }
+
 .row div input {
     width: 300px;
 }
+
 .form-control {
     text-align: center;
 }
+
 .action-button {
-    display:flex;
+    display: flex;
     justify-content: center;
 }
 
@@ -39,5 +48,13 @@ label {
     text-shadow: none;
     border-radius: 10px;
     line-height: 13px;
-    margin: 20px ;
+    margin: 20px;
+}
+
+.text-danger {
+    display: block;
+    color: #d9534f;
+    text-align: center;
+    margin-top: 5px;
+    font-size: 14px;
 }

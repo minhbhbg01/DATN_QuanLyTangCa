@@ -8,4 +8,7 @@ import java.util.List;
 
 public interface StaffRepository extends JpaRepository<Staff,Integer> {
     Staff findByEmail(String email);
+    boolean existsByEmail(String email);
+    boolean existsByName(String name);
+
 }

@@ -94,4 +94,12 @@ public class StaffService {
             throw new ChangeSetPersister.NotFoundException();
         }
     }
+    public boolean existsByEmail(String email) {
+        return staffRepository.existsByEmail(email);
+
+    }
+    public boolean existsByName(String name) {
+        return staffRepository.existsByName(name);
+    }
+
 }

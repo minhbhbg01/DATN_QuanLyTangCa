@@ -26,15 +26,25 @@ public class StaffController {
         return "staff/create";
     }
 
-    @PostMapping("admin/staff/create")
-    public String createNewStaff(@ModelAttribute("staffDTO") StaffDTO staffDTO, BindingResult result) {
-        if (result.hasErrors()) {
+    @PostMapping("/admin/staff/create")
+    public String createNewStaff(@ModelAttribute("staffDTO") StaffDTO staffDTO,
+                                 BindingResult result,
+                                 Model model) {
+        boolean emailExists = staffService.existsByEmail(staffDTO.getEmail());
+        boolean nameExists = staffService.existsByName(staffDTO.getName());
+
+        if (emailExists || nameExists || result.hasErrors()) {
+            model.addAttribute("emailExists", emailExists);
+            model.addAttribute("nameExists", nameExists);
             return "staff/create";
         }
 
         staffService.createStaff(staffDTO);
         return "redirect:/admin/staff/list";
     }
+
+
+
 
     @GetMapping("admin/staff/edit/{id}")
     public String getEditStaffPage(Model model, @PathVariable Integer id) {
